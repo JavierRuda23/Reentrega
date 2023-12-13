@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, TextInput, Button, FlatList, TouchableOpacity, Modal } from 'react-native';
 import { useState } from 'react';
+import ModalDelete from './src/components/ModalDelete';
 export default function App() {
   const  [modalVisible, setModalVisible] = useState(false)  
   const [selectedItem, setSelectedItem] = useState([])
@@ -51,14 +52,12 @@ export default function App() {
           keyExtractor={item => item.id}
         />
       </View>
-      <Modal visible={modalVisible} animationType='fade' style ={styles.modal}>
-      <Text>
-      ¿Quieres eliminar este elemento?
-      <Button title='Si, borrar' color="#db5a42" onPress={deleteItem} />
-      <Button title='Cancelar' onPress={onHandleModal} />
-      </Text>
+      <ModalDelete 
+      visible = {modalVisible}
+      onModal = {onHandleModal}
+      onDelete = {deleteItem}
 
-      </Modal>
+      />
     </View>
   );
 }
